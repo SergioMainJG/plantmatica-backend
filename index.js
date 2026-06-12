@@ -5,6 +5,18 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+// Añade esto al inicio de tu index.js o server.js
+const { monitorEventLoopDelay } = require('perf_hooks');
+
+const h = monitorEventLoopDelay({ resolution: 20 });
+h.enable();
+
+// Imprime el retraso del Event Loop cada 5 segundos
+setInterval(() => {
+  console.log(`[Bloqueo Event Loop] Max: ${h.max / 1e6}ms | Promedio: ${h.mean / 1e6}ms`);
+  h.reset(); // Resetea las estadísticas para la siguiente ventana
+}, 5000).unref();
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
