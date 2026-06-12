@@ -1,50 +1,19 @@
-const nodemailer = require('nodemailer');
-const jwt = require('jsonwebtoken');
+// config/mail.js
 
-const generarJWT = (uid = '') => {
-    
-    return new Promise((resolve, reject) => {
-        
-        const payLoad = { uid };
-        
-        jwt.sign(payLoad, process.env.SECRETORPUBLICKEY, {
-            expiresIn: '4h'
-        }, (err, token) => {
+// Simulamos la función principal de envío
+const sendMail = async (opciones) => {
+    // En lugar de conectar a un SMTP, resolvemos en milisegundos
+    console.log(`[MOCK EMAIL] Simulación de correo enviado a: ${opciones.to}`);
+    return Promise.resolve({ success: true, message: 'Mock email sent' });
+};
 
-            if (err) {
-                console.log(err);
-                reject('No se pudo generar el token');
-            } else {
-                resolve(token);
-            }
-            
-        })
-
-    });
-    
-}
-
-const getToken = (payload) => {
-    return jwt.sign({
-        data: payload
-    }, 'SECRET', { expiresIn: '4h' });
-}
-
-const getTokenData = (token) => {
-
-    let data = null;
-    jwt.verify(token, 'SECRET', (err, decoded) => {
-        if (err) {
-            console.log(`Error al conseguir data token`)
-        }
-    });
-
-    return data;
-
-}
+// Si exportabas un transporter de nodemailer, exporta un objeto vacío o con métodos simulados
+const transporter = {
+    sendMail: sendMail,
+    verify: () => Promise.resolve(true)
+};
 
 module.exports = {
-    getToken,
-    getTokenData,
-    generarJWT
-}
+    sendMail,
+    transporter
+};
