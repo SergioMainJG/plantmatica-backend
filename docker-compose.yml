@@ -1,0 +1,31 @@
+services:
+  plantmatica-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: plantmatica-backend
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO: ${MONGO}
+      PORT: ${PORT}
+      SECRETORPUBLICKEY: ${SECRETORPUBLICKEY}
+      CORREO_EMPRESA: ${CORREO_EMPRESA}
+      PASS: ${PASS}
+      CLOUDINARY_KEY: ${CLOUDINARY_KEY}
+      CLOUDINARY_SECRET: ${CLOUDINARY_SECRET}
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:6
+    container_name: plantmatica-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:

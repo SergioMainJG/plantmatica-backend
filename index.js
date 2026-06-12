@@ -14,7 +14,7 @@ try {
     mongoose.connect(process.env.MONGO, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        ssl: true
+        ssl: false
     });
     console.log('Base de datos online');
 
