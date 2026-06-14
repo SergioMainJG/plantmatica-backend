@@ -1,2 +1,0 @@
-CONTAINER ID   NAME                  CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O    PIDS
-c8205991d865   plantmatica-backend   0.01%     107.4MiB / 3.825GiB   2.74%     194MB / 583MB   0B / 4.1kB   22

@@ -1,0 +1,3 @@
+CREATE TYPE "public"."GENDER" AS ENUM('male', 'female', 'unknown');--> statement-breakpoint
+CREATE TYPE "public"."RESIDENCES_STATES" AS ENUM('outside', 'aguascalientes', 'bajaCalifornia', 'bajaCaliforniaSur', 'campeche', 'chiapas', 'chihuahua', 'coahuila', 'colima', 'cdmx', 'durango', 'guanajuato', 'guerrero', 'hidalgo', 'jalisco', 'estado', 'michoacan', 'morelos', 'nayarit', 'nuevo', 'oaxaca', 'puebla', 'queretaro', 'quintana', 'sanLuisPotosi', 'sinaloa', 'sonora', 'tabasco', 'tamaulipas', 'tlaxcala', 'veracruz', 'yucatan', 'zacatecas');--> statement-breakpoint
+CREATE TYPE "public"."ROLS" AS ENUM('admin', 'user');
