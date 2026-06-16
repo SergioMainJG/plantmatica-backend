@@ -2,7 +2,7 @@ import { TypeNotSatisfiedError } from "~/config/custom-errors/type-not-satisfied
 
 export type UserEmail = string & { readonly __brand: unique symbol };
 
-export const createUserEmail = (email: string): UserEmail => {
+export const createUserEmail = (email: unknown): UserEmail => {
   const regexEmail =
     /^[a-zA-Z0-9!#\$%&\/\(\)\?¿\\\.\-]{5,}@[A-Za-z0-9]{3,}\.[a-z]{2,}$/;
   if (typeof email !== "string") throw new TypeNotSatisfiedError(`email must be an string`);

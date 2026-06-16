@@ -1,7 +1,7 @@
 import { TypeNotSatisfiedError } from "~/config/custom-errors/type-not-satisfied.error";
 
 export const MEXICO_STATES = {
-  outside: "Residuo fuera del pais",
+  outside: "Resido fuera del pais",
   aguascalientes: "Aguascalientes",
   bajaCalifornia: "Baja California",
   bajaCaliforniaSur: "Baja California Sur",
@@ -42,8 +42,10 @@ export type UserResidenceState =
   & { readonly __brand: unique symbol };
 
 export const createUserResidenceState = (
-  residenceState: string,
+  residenceState: unknown,
 ): UserResidenceState => {
+  if( typeof residenceState !== 'string' )
+    throw new TypeNotSatisfiedError(`gender must be a string`);
   if (!Object.values(MEXICO_STATES).some((state) => state === residenceState)) {
     throw new TypeNotSatisfiedError(
       `residenceState is not a valid Mexico's state`,

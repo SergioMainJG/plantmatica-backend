@@ -10,7 +10,9 @@ export type UserGender = string & (typeof GENDERS)[keyof typeof GENDERS] & {
   readonly __brand: unique symbol;
 };
 
-export const createUserGender = (gender: string): UserGender => {
+export const createUserGender = (gender: unknown): UserGender => {
+  if( typeof gender !== 'string' )
+    throw new TypeNotSatisfiedError(`gender must be a string`);
   if (!Object.values(GENDERS).some((g) => g === gender)) {
     throw new TypeNotSatisfiedError(
       `gender must be: 'Male' or 'Female' or 'I prefer not comment about it'`,

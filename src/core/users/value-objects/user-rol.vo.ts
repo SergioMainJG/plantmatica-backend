@@ -8,7 +8,7 @@ export type UserRol = string & (typeof ROLS)[keyof typeof ROLS] & {
   readonly __brand: unique symbol;
 };
 
-export const createUserRol = (rol: string): UserRol => {
+export const createUserRol = (rol: unknown): UserRol => {
   if (typeof rol !== "string") {
     throw new TypeNotSatisfiedError(`rol must be a string`);
   }

@@ -28,6 +28,7 @@
       "~/application/*": ["./src/application/*"],
       "~/config/*": ["./src/config/*"],
       "~/core/*": ["./src/core/*"],
+      "~/infrastructure/*": ["./src/infrastructure/*"],
       "~/presentation/*": ["./src/presentation/*"]
     }
   },

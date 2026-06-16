@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import { DomainErrorFilter } from './filters/domain-error.filter';
+import { DrizzleQueryFilter } from './filters/drizzle-error.filter';
 
 ( async () => {
 
@@ -12,10 +14,8 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
   const app = await NestFactory
     .create<NestFastifyApplication>(
         AppModule,
-        new FastifyAdapter({
-          logger: true
-          }
-        )
+        new FastifyAdapter(),
+        { logger: ['error', 'log', 'debug', 'warn']}
     );
     
   app.setGlobalPrefix('api');
@@ -24,6 +24,10 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
       whitelist: true,
       forbidNonWhitelisted: true,
     })
+  );
+  app.useGlobalFilters(
+    new DomainErrorFilter(),
+    new DrizzleQueryFilter()
   );
   
   await app.listen(3000, '0.0.0.0');

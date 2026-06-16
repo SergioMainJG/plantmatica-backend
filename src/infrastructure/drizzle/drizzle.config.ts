@@ -1,12 +1,12 @@
 import { defineConfig } from 'drizzle-kit';
-import { envs } from '../envs/envs.config';
+import { envs } from '~/config/envs/envs.config';
 
-const basePathForSchemasPaths = `./src/application`;
+const basePathForSchemasPaths = `./src/infrastructure/drizzle/schema/`;
 
 export default defineConfig({
   out: './data',
   schema: [
-    `${basePathForSchemasPaths}/user/schema/user-drizzle.schema.ts`
+    `${basePathForSchemasPaths}/user-drizzle.schema.ts`
   ],
   dialect: 'postgresql',
   dbCredentials: {

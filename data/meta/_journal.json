@@ -22,6 +22,27 @@
       "when": 1781427022586,
       "tag": "0002_tiresome_captain_cross",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1781501568752,
+      "tag": "0003_closed_omega_flight",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1781559376090,
+      "tag": "0004_eager_scarlet_spider",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1781571582708,
+      "tag": "0005_silky_cannonball",
+      "breakpoints": true
     }
   ]
 }
