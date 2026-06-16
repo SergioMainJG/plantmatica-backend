@@ -44,7 +44,7 @@ export class UsersService{
   }
 
   async register( registerUserDto : RegisterUserDto): Promise<UserEntity>{
-    const newUser = await UserEntity.create({...registerUserDto, isVerified: false, rol: 'User'})
+    const newUser = await UserEntity.create({...registerUserDto, isVerified: false, rol: 'Usuario'})
     return await this.userRepository.save(newUser);
   }
 }

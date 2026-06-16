@@ -7,9 +7,9 @@ import { DrizzleQueryFilter } from './filters/drizzle-error.filter';
 
 ( async () => {
 
-  if( !process.versions.bun ){
-    throw 'Bun is required'
-  }
+  // if( !process.versions.bun ){
+  //   throw 'Bun is required'
+  // }
 
   const app = await NestFactory
     .create<NestFastifyApplication>(

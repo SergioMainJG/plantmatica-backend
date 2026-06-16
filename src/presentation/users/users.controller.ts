@@ -30,4 +30,10 @@ export class UsersController{
   ){
     return this.usersService.register( createUserDto );
   }
+
+  //!TODO: Confirmar cuenta con correo (en n8n?)
+  //!TODO: Borrar
+  //!TODO: Actualizar: email, gender, name, password, residenceState, rol (Si lo hace un admin) 
+  //!TODO:
+
 }

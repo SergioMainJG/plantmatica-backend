@@ -3,34 +3,28 @@ import { UsersService } from "~/application/users/users.service";
 import { UsersController } from "./users.controller";
 import { DrizzleUserRepository } from "~/infrastructure/repositories/users/drizzle-user.repository";
 import { UserRepository } from "~/application/ports/user.repository";
-import { JWTStrategy } from "~/application/users/strategies/jwt.strategy";
-import { PassportModule } from "@nestjs/passport";
+import { JwtAuthGuard } from "~/application/users/guard/jwt-auth.guard";
 import { JwtModule } from "@nestjs/jwt";
 import { envs } from "~/config/envs/envs.config";
 
 @Module({
   providers: [
-    JWTStrategy,
+    JwtAuthGuard,
     UsersService,
     {
       provide: UserRepository,
       useClass: DrizzleUserRepository
     },
   ],
-  imports:[
-    PassportModule.register({defaultStrategy: 'jwt'}),
+  imports: [
     JwtModule.registerAsync({
-      useFactory: () => {
-        return {
-          secret: envs.JWT_SECRET,
-          signOptions: {
-            expiresIn: '2h'
-          }
-        }
-      }
+      useFactory: () => ({
+        secret: envs.JWT_SECRET,
+        signOptions: { expiresIn: '2h' }
+      })
     })
   ],
   controllers: [UsersController],
-  exports: [JWTStrategy, PassportModule, JwtModule]
+  exports: [JwtAuthGuard, JwtModule]
 })
-export class UsersModule{}
+export class UsersModule {}
