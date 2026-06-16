@@ -1,6 +1,6 @@
-import { IsBoolean, IsEmail, IsISO8601, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsEmail, IsISO8601, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
-export class CreateUserDto{
+export class RegisterUserDto{
   @IsString()
   @IsISO8601({strict: true})
   readonly birthdate: string = '';
@@ -13,9 +13,6 @@ export class CreateUserDto{
   @MinLength(4)
   readonly gender: string = '';
   
-  @IsBoolean()
-  readonly isVerified: boolean = false;
-
   @IsString()
   @MinLength(5)
   readonly name: string = '';
@@ -29,6 +26,4 @@ export class CreateUserDto{
   @IsString()
   readonly residenceState: string = '';
   
-  @IsString()
-  readonly rol: string = ''; 
 }

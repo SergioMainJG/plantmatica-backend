@@ -43,6 +43,13 @@
       "when": 1781571582708,
       "tag": "0005_silky_cannonball",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1781573796023,
+      "tag": "0006_slimy_human_fly",
+      "breakpoints": true
     }
   ]
 }

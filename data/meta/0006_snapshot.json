@@ -1,0 +1,164 @@
+{
+  "id": "57f992f0-029c-4db2-b488-b42933ee59b8",
+  "prevId": "6c35cf36-299b-4226-86f1-2dd8ae2513bc",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "birthdate": {
+          "name": "birthdate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gender": {
+          "name": "gender",
+          "type": "GENDER",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isVerified": {
+          "name": "isVerified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "residenceState": {
+          "name": "residenceState",
+          "type": "RESIDENCES_STATES",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Resido fuera del pais'"
+        },
+        "rol": {
+          "name": "rol",
+          "type": "ROLS",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Usuario'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        },
+        "users_name_unique": {
+          "name": "users_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.GENDER": {
+      "name": "GENDER",
+      "schema": "public",
+      "values": [
+        "Male",
+        "Female",
+        "I prefer not comment about it"
+      ]
+    },
+    "public.RESIDENCES_STATES": {
+      "name": "RESIDENCES_STATES",
+      "schema": "public",
+      "values": [
+        "Resido fuera del pais",
+        "Aguascalientes",
+        "Baja California",
+        "Baja California Sur",
+        "Campeche",
+        "Chiapas",
+        "Chihuahua",
+        "Coahuila de Zaragoza",
+        "Colima",
+        "CDMX",
+        "Durango",
+        "Guanajuato",
+        "Guerrero",
+        "Hidalgo",
+        "Jalisco",
+        "Estado de Mexico",
+        "Michoacan de Ocampo",
+        "Morelos",
+        "Nayarit",
+        "Nuevo Leon",
+        "Oaxaca",
+        "Puebla",
+        "Queretaro de Arteaga",
+        "Quintana Roo",
+        "San Luis Potosi",
+        "Sinaloa",
+        "Sonora",
+        "Tabasco",
+        "Tamaulipas",
+        "Tlaxcala",
+        "Veracruz de Ignacio de la Llave",
+        "Yucatan",
+        "Zacatecas"
+      ]
+    },
+    "public.ROLS": {
+      "name": "ROLS",
+      "schema": "public",
+      "values": [
+        "Administrador",
+        "Usuario"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

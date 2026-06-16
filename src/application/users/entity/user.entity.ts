@@ -9,7 +9,7 @@ import { createUserRol, UserRol } from "~/core/users/value-objects/user-rol.vo";
 import { TypeNotSatisfiedError } from "~/config/custom-errors/type-not-satisfied.error";
 import { User } from "~/core/users/user";
 
-interface UserProps {
+export interface UserProps {
   birthdate: string;
   email: string;
   gender: string;
@@ -35,18 +35,18 @@ export class UserEntity implements User {
     public id?: string,
   ){}
 
-  static create = async ( datos: UserProps ): Promise<UserEntity> => {
-    const birthdateVO:UserBirthday =  createUserBirthday(datos['birthdate']);
-    const emailVO:UserEmail = createUserEmail(datos['email']);
-    const genderVO:UserGender = createUserGender(datos['gender']);
-    const isVerifiedVO:boolean = datos['isVerified'];
-    const nameVO:UserName = createUserName(datos['name']);
-    const passwordVO:UserPassword = await createUserPassword(datos['password']);
-    const residenceStateVO:UserResidenceState = createUserResidenceState(datos['residenceState']);
-    const rolVO:UserRol = createUserRol(datos['rol']);
+  static create = async ( props: UserProps ): Promise<UserEntity> => {
+    const birthdateVO:UserBirthday =  createUserBirthday(props['birthdate']);
+    const emailVO:UserEmail = createUserEmail(props['email']);
+    const genderVO:UserGender = createUserGender(props['gender']);
+    const isVerifiedVO:boolean = props['isVerified'];
+    const nameVO:UserName = createUserName(props['name']);
+    const passwordVO:UserPassword = await createUserPassword(props['password']);
+    const residenceStateVO:UserResidenceState = createUserResidenceState(props['residenceState']);
+    const rolVO:UserRol = createUserRol(props['rol']);
     
-    if( datos['id'] )
-      if( !validate(datos['id']) )
+    if( props['id'] )
+      if( !validate(props['id']) )
         throw new TypeNotSatisfiedError(`id must be a valid uuidv7`);
 
     return new UserEntity(
@@ -58,7 +58,21 @@ export class UserEntity implements User {
       passwordVO,
       residenceStateVO,
       rolVO,
-      datos['id'],
+      props['id'],
+    )
+  }
+
+  static fromModel = ( props: UserProps ): UserEntity => {
+    return new UserEntity(
+      props.birthdate as unknown as UserBirthday,
+      props.email as unknown as UserEmail,
+      props.gender as unknown as UserGender,
+      props.isVerified as unknown as boolean,
+      props.name as unknown as UserName,
+      props.password as unknown as UserPassword,
+      props.residenceState as unknown as UserResidenceState,
+      props.rol as unknown as UserRol,
+      props.id as unknown as string,
     )
   }
 }
