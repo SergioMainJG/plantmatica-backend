@@ -1,4 +1,5 @@
 import { applyDecorators, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { UserRol } from '~/core/users/value-objects/user-rol.vo';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
 import { UserRolGuard } from '../guard/user-rol.guard';
@@ -8,5 +9,7 @@ export const Auth = (...rols: UserRol[]) => {
   return applyDecorators(
     RolProtected(...rols),
     UseGuards(JwtAuthGuard, UserRolGuard),
+    ApiBearerAuth(),
+    ApiUnauthorizedResponse({ description: 'Unauthorized - Missing or invalid token' }),
   );
 }
