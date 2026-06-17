@@ -10,19 +10,19 @@ import { TypeNotSatisfiedError } from "~/config/custom-errors/type-not-satisfied
 import { User } from "~/core/users/user";
 
 export interface UserProps {
-  birthdate: string;
-  email: string;
-  gender: string;
+  birthdate: unknown;
+  email: unknown;
+  gender: unknown;
   isVerified: boolean;
-  name: string;
-  password: string;
-  residenceState: string;
-  rol: string;
+  name: unknown;
+  password: unknown;
+  residenceState: unknown;
+  rol: unknown;
   id?: string;
 }
 
 export class UserEntity implements User {
-  
+
   private constructor(
     public birthdate: UserBirthday,
     public email: UserEmail,
@@ -33,20 +33,20 @@ export class UserEntity implements User {
     public residenceState: UserResidenceState,
     public rol: UserRol,
     public id?: string,
-  ){}
+  ) { }
 
-  static create = async ( props: UserProps ): Promise<UserEntity> => {
-    const birthdateVO:UserBirthday =  createUserBirthday(props['birthdate']);
-    const emailVO:UserEmail = createUserEmail(props['email']);
-    const genderVO:UserGender = createUserGender(props['gender']);
-    const isVerifiedVO:boolean = props['isVerified'];
-    const nameVO:UserName = createUserName(props['name']);
-    const passwordVO:UserPassword = await createUserPassword(props['password']);
-    const residenceStateVO:UserResidenceState = createUserResidenceState(props['residenceState']);
-    const rolVO:UserRol = createUserRol(props['rol']);
-    
-    if( props['id'] )
-      if( !validate(props['id']) )
+  public static readonly create = async (props: UserProps): Promise<UserEntity> => {
+    const birthdateVO: UserBirthday = createUserBirthday(props['birthdate']);
+    const emailVO: UserEmail = createUserEmail(props['email']);
+    const genderVO: UserGender = createUserGender(props['gender']);
+    const isVerifiedVO: boolean = props['isVerified'];
+    const nameVO: UserName = createUserName(props['name']);
+    const passwordVO: UserPassword = await createUserPassword(props['password']);
+    const residenceStateVO: UserResidenceState = createUserResidenceState(props['residenceState']);
+    const rolVO: UserRol = createUserRol(props['rol']);
+
+    if (props['id'])
+      if (!validate(props['id']))
         throw new TypeNotSatisfiedError(`id must be a valid uuidv7`);
 
     return new UserEntity(
@@ -62,17 +62,17 @@ export class UserEntity implements User {
     )
   }
 
-  static fromModel = ( props: UserProps ): UserEntity => {
+  public static readonly fromModel = (props: UserProps): UserEntity => {
     return new UserEntity(
       props.birthdate as unknown as UserBirthday,
       props.email as unknown as UserEmail,
       props.gender as unknown as UserGender,
-      props.isVerified as unknown as boolean,
+      props.isVerified,
       props.name as unknown as UserName,
       props.password as unknown as UserPassword,
       props.residenceState as unknown as UserResidenceState,
       props.rol as unknown as UserRol,
-      props.id as unknown as string,
+      props.id,
     )
   }
 }

@@ -5,5 +5,7 @@
 // prioritize ArkType's "type" for autoimports
 "typescript.preferences.autoImportSpecifierExcludeRegexes": [
 	"^(node:)?os$"
-]
+],
+"snyk.advanced.organization": "b782a9d1-3cc5-4b91-934a-608e5a7133b8",
+"snyk.advanced.autoSelectOrganization": true
 }
