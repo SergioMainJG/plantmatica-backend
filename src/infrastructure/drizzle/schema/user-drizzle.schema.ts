@@ -17,4 +17,5 @@ export const UsersTable = pgTable("users", {
   password: text().notNull(),
   residenceState: residencesStatesEnum().notNull().default(MEXICO_STATES.outside),
   rol: rolsEnum().notNull().default(ROLS.user),
+  isAgeAllowed: boolean().notNull().default(false),
 });

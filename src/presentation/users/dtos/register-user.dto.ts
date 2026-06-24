@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsISO8601, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsEmail, IsISO8601, IsNotEmpty, IsString, Matches, MaxLength, MinLength, IsNotEmptyObject, ValidateNested, Type } from "class-validator";
+import { PermissionsDto } from './permissions.dto';
 
 export class RegisterUserDto {
   @ApiProperty({
@@ -60,5 +61,9 @@ export class RegisterUserDto {
   @IsString()
   @IsNotEmpty()
   readonly residenceState: string = '';
-
+  
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(()=> PermissionsDto)
+  readonly permissions: PermissionsDto;
 }

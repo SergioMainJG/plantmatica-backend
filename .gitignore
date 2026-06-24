@@ -4,3 +4,5 @@ package-lock.json
 .env.local
 pnpm-lock.yaml
 dist/
+data/
+postgres-data/

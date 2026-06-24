@@ -50,6 +50,13 @@
       "when": 1781573796023,
       "tag": "0006_slimy_human_fly",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1782190028305,
+      "tag": "0007_wooden_silk_fever",
+      "breakpoints": true
     }
   ]
 }

@@ -43,6 +43,7 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
+      transform: true,
     })
   );
   app.useGlobalFilters(
@@ -51,8 +52,10 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
   );
 
   app.enableCors({
-    origin: [`http://plantmatica.sergioar.dev`, `http://localhost:3000`],
+    origin: [`http://plantmatica.sergioar.dev`, `http://localhost:3000`, `http://localhost:4200`],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-token'],
+    credentials: true,
   });
   await app.register(fastifyCsrf);
 

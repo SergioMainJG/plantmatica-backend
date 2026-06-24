@@ -7,7 +7,7 @@
   "scripts": {
     "start:prod": "bun dist/presentation/main.js",
     "prebuild": "rimraf dist",
-    "start": "bun x nest start --exec bun",
+    "start": "docker compose up -d && sleep 30 && bun x nest start --exec bun",
     "start:dev": "bun x nest start --watch --exec bun",
     "start:debug": "bun x nest start --debug --watch --exec bun",
     "build": "bun x nest build",
@@ -39,9 +39,10 @@
     "@types/pg": "^8.20.0",
     "autocannon": "^8.0.0",
     "benchmark": "^2.1.4",
-    "drizzle-kit": "^0.31.10"
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^6.0.3"
   },
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@11.8.0",
   "engines": {
     "bun": ">=1.3.14"
   },

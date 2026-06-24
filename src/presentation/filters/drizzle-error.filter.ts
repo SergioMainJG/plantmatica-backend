@@ -25,6 +25,16 @@ export class DrizzleQueryFilter implements ExceptionFilter {
           }
         )
       }
+
+      if (cause.code === '42P01') {
+        return resp.status(500).send(
+          {
+            statusCode: 500,
+            error: 'DB just started',
+            message: `Check the backend, the DB has no any schema`,
+          }
+        )
+      }
     }
 
     console.error('='.repeat(30));

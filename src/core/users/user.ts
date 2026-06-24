@@ -5,6 +5,7 @@ import { UserName } from "./value-objects/user-name.vo";
 import { UserPassword } from "./value-objects/user-password.vo";
 import { UserResidenceState } from "./value-objects/user-residence-state.vo";
 import { UserRol } from "./value-objects/user-rol.vo";
+import { TrackingPermissions } from "./value-objects/user-tracking-permissions.vo";
 
 export interface User {
   readonly birthdate: UserBirthday;
@@ -15,4 +16,5 @@ export interface User {
   readonly password: UserPassword;
   readonly residenceState: UserResidenceState;
   readonly rol: UserRol;
+  readonly permissions: TrackingPermissions;
 }
