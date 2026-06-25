@@ -47,8 +47,8 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
     })
   );
   app.useGlobalFilters(
-    new DomainErrorFilter(),
-    new DrizzleQueryFilter()
+    new DrizzleQueryFilter(),
+    new DomainErrorFilter()
   );
 
   app.enableCors({

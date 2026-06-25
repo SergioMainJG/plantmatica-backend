@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "start:prod": "bun dist/presentation/main.js",
-    "prebuild": "rimraf dist",
-    "start": "docker compose up -d && sleep 30 && bun x nest start --exec bun",
-    "start:dev": "bun x nest start --watch --exec bun",
+    "prebuild": "rimraf dist tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo",
+    "start": "podman compose up -d && sleep 30 && bun x nest start --exec bun",
+    "start:dev": "bun x --bun nest start --watch --exec bun",
     "start:debug": "bun x nest start --debug --watch --exec bun",
     "build": "bun x nest build",
     "benchmark:stress": "bun x node benchmarks/stress.bench.js",

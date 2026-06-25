@@ -10,7 +10,7 @@ export const MEXICO_STATES = {
   chihuahua: "Chihuahua",
   coahuila: "Coahuila de Zaragoza",
   colima: "Colima",
-  cdmx: "CDMX",
+  cdmx: "Ciudad de Mexico",
   durango: "Durango",
   guanajuato: "Guanajuato",
   guerrero: "Guerrero",

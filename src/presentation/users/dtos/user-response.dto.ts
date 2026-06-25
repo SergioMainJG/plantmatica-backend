@@ -63,7 +63,7 @@ export class UserResponseDto {
 
 export class AuthResponseDto {
   @ApiProperty({ type: UserResponseDto })
-  userResponse!: UserResponseDto;
+  user!: UserResponseDto;
 
   @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...', description: 'JWT authentication token' })
   token!: string;

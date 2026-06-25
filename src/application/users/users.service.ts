@@ -51,7 +51,12 @@ export class UsersService {
   }
 
   async register(registerUserDto: RegisterUserDto): Promise<UserLogged> {
-    const newUserEntity = await UserEntity.create({ ...registerUserDto, isVerified: false, rol: 'Usuario' })
+    const newUserEntity = await UserEntity.create({
+      ...registerUserDto,
+      ...registerUserDto.permissions,
+      isVerified: false,
+      rol: 'Usuario',
+    });
     const user = await this.userRepository.save(newUserEntity);
     return {
       user: user,
@@ -76,7 +81,12 @@ export class UsersService {
 
     const newPassword = toUpdate.newPassword || password;
 
-    const newUserEntity = await UserEntity.create({ ...restUserFromDB, ...toUpdate, password: newPassword });
+    const newUserEntity = await UserEntity.create({
+      ...restUserFromDB,
+      ...restUserFromDB.permissions,
+      ...toUpdate,
+      password: newPassword,
+    });
     return await this.userRepository.update(credential, newUserEntity);
   }
 

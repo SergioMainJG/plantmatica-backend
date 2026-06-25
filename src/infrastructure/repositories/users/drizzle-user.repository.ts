@@ -58,7 +58,23 @@ export class DrizzleUserRepository implements UserRepository {
     const [newUser] = await this.drizzleService
       .getDb()
       .insert(UsersTable)
-      .values({ ...userEntity, id: uuid(), birthdate: birthdateAsString }).returning();
+      .values({
+        id: uuid(),
+        birthdate: birthdateAsString,
+        email: userEntity.email,
+        gender: userEntity.gender,
+        isVerified: userEntity.isVerified,
+        name: userEntity.name,
+        password: userEntity.password,
+        residenceState: userEntity.residenceState,
+        rol: userEntity.rol,
+        isAgeAllowed: userEntity.permissions.isAgeAllowed,
+        isStateAllowed: userEntity.permissions.isStateAllowed,
+        isGenderAllowed: userEntity.permissions.isGenderAllowed,
+        isMarketingAllowed: userEntity.permissions.isMarketingAllowed,
+        isAdsAllowed: userEntity.permissions.isAdsAllowed,
+      })
+      .returning();
     return UserEntity.fromModel({ ...newUser! });
   }
 
@@ -87,7 +103,21 @@ export class DrizzleUserRepository implements UserRepository {
 
     const [updatedUser] = await this.drizzleService.getDb()
       .update(UsersTable)
-      .set({ ...userEntity, birthdate: userEntity.birthdate.toString() })
+      .set({
+        birthdate: userEntity.birthdate.toString(),
+        email: userEntity.email,
+        gender: userEntity.gender,
+        isVerified: userEntity.isVerified,
+        name: userEntity.name,
+        password: userEntity.password,
+        residenceState: userEntity.residenceState,
+        rol: userEntity.rol,
+        isAgeAllowed: userEntity.permissions.isAgeAllowed,
+        isStateAllowed: userEntity.permissions.isStateAllowed,
+        isGenderAllowed: userEntity.permissions.isGenderAllowed,
+        isMarketingAllowed: userEntity.permissions.isMarketingAllowed,
+        isAdsAllowed: userEntity.permissions.isAdsAllowed,
+      })
       .where(condition)
       .returning();
 
